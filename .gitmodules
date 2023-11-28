@@ -1,0 +1,6 @@
+[submodule "Backend_WikiCareers"]
+	path = Backend_WikiCareers
+	url = git@github.com:JohannRuiz1/Backend_WikiCareers.git
+[submodule "Frontend_WikiCareers"]
+	path = Frontend_WikiCareers
+	url = git@github.com:cdoodyy/Frontend_WikiCareers.git
