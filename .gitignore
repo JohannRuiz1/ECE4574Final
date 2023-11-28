@@ -75,7 +75,6 @@ swagger-ui/selenium-debug.log
 swagger-ui/chromedriver.log
 swagger-ui/test/e2e/db.json
 swagger-ui/docs/_book
-swagger-ui/dev-helpers/examples
 
 # dist
 swagger-ui/flavors/**/dist/*
