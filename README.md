@@ -6,11 +6,12 @@ cd Backend
 
 ### Starting React Frontend
 cd Frontend
-npm i
+npm install
 npm start 
 
 ### Starting Swagger REST Documentation
 cd swagger-ui
+npm install
 npm run dev
 Go to localhost:3200
 
