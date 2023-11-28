@@ -58,4 +58,33 @@ Backend/!**/src/test/**/build/
 ### H2 Specific Files ###
 Backend/test.db.mv.db
 
+swagger-ui/node_modules
+swagger-ui/.idea
+swagger-ui/.vscode
+swagger-ui/.deps_check
+swagger-ui/.DS_Store
+swagger-ui/.env.local
+swagger-ui/.env.development.local
+swagger-ui/.env.test.local
+swagger-ui/.env.production.local
+swagger-ui/.nyc_output
+swagger-ui/npm-debug.log*
+swagger-ui/.eslintcache
+swagger-ui/*.iml
+swagger-ui/selenium-debug.log
+swagger-ui/chromedriver.log
+swagger-ui/test/e2e/db.json
+swagger-ui/docs/_book
+swagger-ui/dev-helpers/examples
+
+# dist
+swagger-ui/flavors/**/dist/*
+swagger-ui/lib
+swagger-ui/es
+swagger-ui/dist/log*
+swagger-ui/swagger-ui-*.tgz
+
+# Cypress
+swagger-ui/test/e2e-cypress/screenshots
+swagger-ui/test/e2e-cypress/videos
 

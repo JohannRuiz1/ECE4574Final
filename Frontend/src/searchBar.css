@@ -1,0 +1,6 @@
+.large-search-bar {
+    width: 300px; /* Adjust the width to make it larger */
+    height: 40px; /* Adjust the height to make it taller */
+    padding: 10px; /* Add padding to increase the input field's size */
+    font-size: 16px; /* Adjust the font size if needed */
+  }
