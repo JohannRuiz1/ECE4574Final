@@ -1,0 +1,694 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the Swagger Documentation for the WikiCareers Backend Springboot Application",
+    "version": "1.0.6",
+    "title": "Swagger WikiCareers",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "apiteam@swagger.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Careers",
+      "description": "Information about Careers in H2 Database"
+    },
+    {
+      "name": "Education",
+      "description": "Information about Education for Careers in H2 Database"
+    },
+    {
+      "name": "Risks",
+      "description": "Information about Risk for Careers in H2 Database"
+    },
+    {
+      "name": "Chat",
+      "description": "Calls ChatGPT API for Career, Education, and Risk information"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/careers": {
+      "get": {
+        "tags": ["Careers"],
+        "summary": "Get all careers from database",
+        "description": "",
+        "operationId": "getCareers",
+        "produces": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CareerList"
+            }
+          },
+          "204": {
+            "description": "no content"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Careers"],
+        "summary": "Adds a new career",
+        "description": "",
+        "operationId": "uploadCareer",
+        "consumes": ["application/json"],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Career object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/careers/title/{title}": {
+      "get": {
+        "tags": ["Careers"],
+        "summary": "Get career based off title",
+        "description": "",
+        "operationId": "getCareerByTitle",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "description": "Title of career",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/careers/fullInfo/{name}": {
+      "get": {
+        "tags": ["Careers"],
+        "summary": "Get career info based off name",
+        "description": "",
+        "operationId": "getCareerInfoByName",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "Name of career",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          },
+          "204": {
+            "description": "no content"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/careers/id/{id}": {
+      "get": {
+        "tags": ["Careers"],
+        "summary": "Get career based off id",
+        "description": "",
+        "operationId": "getCareerById",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of career",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Careers"],
+        "summary": "Updates a career",
+        "description": "",
+        "operationId": "updateCareer",
+        "consumes": ["application/json"],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of career",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Career object that is updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "career with that id doesn't exist"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Careers"],
+        "summary": "Delete a career",
+        "description": "",
+        "operationId": "deleteCareer",
+        "consumes": [],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of career",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/education": {
+      "get": {
+        "tags": ["Education"],
+        "summary": "Get all education objects",
+        "description": "",
+        "operationId": "getEducation",
+        "produces": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/EducationList"
+            }
+          },
+          "404": {
+            "description": "no education objects"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Education"],
+        "summary": "Adds a new education object",
+        "description": "",
+        "operationId": "uploadEducation",
+        "consumes": ["application/json"],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Education object that needs to be added",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Education"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/education/id/{id}": {
+      "get": {
+        "tags": ["Education"],
+        "summary": "Get education based off id",
+        "description": "",
+        "operationId": "getEducationById",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of education",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Education"
+            }
+          },
+          "404": {
+            "description": "no education objects"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Education"],
+        "summary": "Updates a education",
+        "description": "",
+        "operationId": "updateEducation",
+        "consumes": ["application/json"],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of education",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Education object that is updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Education"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "education with that id doesn't exist"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Education"],
+        "summary": "Delete a education",
+        "description": "",
+        "operationId": "deleteEducation",
+        "consumes": [],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of education",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/risks": {
+      "get": {
+        "tags": ["Risks"],
+        "summary": "Get all risks from database",
+        "description": "",
+        "operationId": "getRisk",
+        "produces": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/RiskList"
+            }
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Risks"],
+        "summary": "Adds a new risk to database",
+        "description": "",
+        "operationId": "uploadRisk",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Risk object that needs to be added to the database",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Risk"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/risk/id/{id}": {
+      "get": {
+        "tags": ["Risks"],
+        "summary": "Get risk based off id",
+        "description": "",
+        "operationId": "getRiskById",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of risk",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Risk"
+            }
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Risks"],
+        "summary": "Updates a risk",
+        "description": "",
+        "operationId": "updateRisk",
+        "consumes": ["application/json"],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of risk",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Career object that is updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Career"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "risk with that id doesn't exist"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Risks"],
+        "summary": "Delete a risk",
+        "description": "",
+        "operationId": "deleteRisk",
+        "consumes": [],
+        "produces": ["text/plain"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of risk",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    },
+    "/chat/{prompt}": {
+      "get": {
+        "tags": ["Chat"],
+        "summary": "Get Full Career Information based of Prompt from OpenAI",
+        "description": "",
+        "operationId": "promptInOpenAPI",
+        "produces": [],
+        "parameters": [
+          {
+            "name": "prompt",
+            "in": "path",
+            "description": "Prompt for career",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/CareerInfo"
+            }
+          },
+          "500": {
+            "description": "internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Career": {
+      "type": "object",
+      "properties": {
+        "career_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pay_range_low": {
+          "type": "number",
+          "format": "float"
+        },
+        "pay_range_high": {
+          "type": "number",
+          "format": "float"
+        },
+        "risk_level": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "CareerList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Career"
+      }
+    },
+    "Education": {
+      "type": "object",
+      "properties": {
+        "educationId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "careerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "educationLevel": {
+          "type": "string"
+        },
+        "yearsOfSchooling": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "educationDescription": {
+          "type": "string"
+        }
+      }
+    },
+    "EducationList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Education"
+      }
+    },
+    "Risk": {
+      "type": "object",
+      "properties": {
+        "riskId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "careerId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "riskDescription": {
+          "type": "string"
+        },
+        "riskLevel": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "RiskList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Risk"
+      }
+    },
+    "CareerInfo": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "payRangeLow": {
+          "type": "number",
+          "format": "float"
+        },
+        "payRangeHigh": {
+          "type": "number",
+          "format": "float"
+        },
+        "riskDescription": {
+          "type": "string"
+        },
+        "riskLevel": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "educationLevel": {
+          "type": "string"
+        },
+        "yearsOfSchooling": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "educationDescription": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

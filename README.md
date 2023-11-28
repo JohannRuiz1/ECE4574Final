@@ -11,7 +11,8 @@ npm start
 
 ### Starting Swagger REST Documentation
 cd swagger-ui
-npm install
+sudo npm install
+sudo npm ci
 npm run dev
 Go to localhost:3200
 
