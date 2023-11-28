@@ -9,14 +9,14 @@ services:
     volumes:
       - ./test.mv.db:/var/lib/h2/test.mv.db
   backend-springboot:
-    image: johannruiz176/wikicareers-backend:latest
+    image: johannruiz176/wikicareers-backend:v2
     restart: always
     ports:
       - "8080:8080"
     depends_on:
       - "database-h2"
   frontend-react-app:
-    image: johannruiz176/wikicareers-frontend:v1
+    image: johannruiz176/wikicareers-frontend:v2
     restart: always
     ports: 
       - "3000:3000"
