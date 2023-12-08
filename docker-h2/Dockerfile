@@ -1,3 +1,7 @@
+# docker-h2/Dockerfile WikiCareers Johann Ruiz Virginia Tech
+# Dockerfile for creating H2 container
+# December 2023
+
 FROM adoptopenjdk:11-jre-hotspot
 
 ENV H2_ZIP http://www.h2database.com/h2-2019-03-13.zip
