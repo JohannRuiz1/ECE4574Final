@@ -1,8 +1,8 @@
 ## WikiCareer 
-/* README.md WikiCareers Johann Ruiz Virginia Tech
-* README.md to start the project
-* December 2023
-*/
+README.md WikiCareers Johann Ruiz Virginia Tech
+README.md to start the project
+December 2023
+
 ### Starting SpringBoot Backend
 cd Backend
 ./mvnw spring-boot:run
