@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# docker-h2/entrypoint.sh WikiCareers Johann Ruiz Virginia Tech
+# Entrypoint for H2 container
+# December 2023
+
 # Start H2 server in the background
 java -cp /opt/h2/bin/h2*.jar org.h2.tools.Server \
     -baseDir ${H2_DATA} -ifNotExists \
