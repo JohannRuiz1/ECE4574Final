@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is the Swagger Documentation for the WikiCareers Backend Springboot Application",
+    "description": "swagger-ui-def.json WikiCareers Johann Ruiz Virginia TechSwagger Documentation for the WikiCareers Backend Springboot Application December 2023",
     "version": "1.0.6",
     "title": "Swagger WikiCareers",
     "termsOfService": "http://swagger.io/terms/",
