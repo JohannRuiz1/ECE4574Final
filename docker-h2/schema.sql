@@ -1,3 +1,7 @@
+-- schema.sql WikiCareers Johann Ruiz Virginia Tech
+-- The schema for the H2 database, loaded on start
+-- December 2023
+
 CREATE TABLE IF NOT EXISTS Careers (
     career_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
